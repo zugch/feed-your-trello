@@ -1,11 +1,22 @@
 const axios = require('axios');
 //require('dotenv').config();
 
+// DEBUG - Print ALL env vars
+console.log('=== DEBUG ENV ===');
+console.log('TRELLO_KEY:', process.env.TRELLO_KEY ? `${process.env.TRELLO_KEY.substring(0,4)}...` : 'MISSING');
+console.log('TRELLO_TOKEN length:', process.env.TRELLO_TOKEN ? process.env.TRELLO_TOKEN.length : 'MISSING');
+console.log('BOARD_ID:', process.env.BOARD_ID || 'MISSING');
+console.log('================');
+
 const config = {
   key: process.env.TRELLO_KEY,
   token: process.env.TRELLO_TOKEN,
   boardId: process.env.BOARD_ID
 };
+
+// Print config
+console.log('CONFIG key:', config.key ? `${config.key.substring(0,4)}...` : 'MISSING');
+console.log('CONFIG boardId:', config.boardId || 'MISSING');
 
 async function createList() {
   try {
