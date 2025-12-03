@@ -5,7 +5,7 @@ const axios = require('axios');
 console.log('=== DEBUG ENV ===');
 console.log('TRELLO_KEY:', process.env.TRELLO_KEY ? `${process.env.TRELLO_KEY.substring(0,4)}...` : 'MISSING');
 console.log('TRELLO_TOKEN length:', process.env.TRELLO_TOKEN ? process.env.TRELLO_TOKEN.length : 'MISSING');
-console.log('BOARD_ID:', process.env.BOARD_ID || 'MISSING');
+console.log('BOARD_ID:', process.env.BOARD_ID ? `${process.env.BOARD_ID.substring(0,4)}...` : 'MISSING');
 console.log('================');
 
 const config = {
@@ -16,7 +16,7 @@ const config = {
 
 // Print config
 console.log('CONFIG key:', config.key ? `${config.key.substring(0,4)}...` : 'MISSING');
-console.log('CONFIG boardId:', config.boardId || 'MISSING');
+console.log('CONFIG boardId:', config.boardId ? `${config.boardId.substring(0,4)}...` : 'MISSING');
 
 async function createList() {
   try {
