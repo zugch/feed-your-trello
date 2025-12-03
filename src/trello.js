@@ -30,6 +30,8 @@ async function createList() {
     const listsResponse = await axios.get(
       `https://api.trello.com/1/boards/${config.boardId}/lists?key=${config.key}&token=${config.token}`
     );
+
+    console.log(`Check if list exists`);
     
     // 2. Check if list exists
     const existingList = listsResponse.data.find(list => list.name === today);
@@ -37,6 +39,8 @@ async function createList() {
       console.log(`List "${today}" already exists: ${existingList.id}`);
       return; // Exit - no action needed
     }
+
+    console.log(`Create new list if missing`);
     
     // 3. Create new list only if missing
     const newListResponse = await axios.post(
