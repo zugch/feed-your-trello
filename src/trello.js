@@ -45,24 +45,26 @@ async function feedTrello() {
 
     console.log(`📝 Feeding ${items.length} items from data/items.txt`);
 
-    // 6. Create card for each item (one-way feed)
-    let linkCount = 0, textCount = 0;
+    // 6. Create cards with proper titles + link detection
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       const isUrl = item.match(/^https?:\/\//i);
 
-      // Manual query string - NO URLSearchParams
-      let query = `key=${config.key}&token=${config.token}&idList=${listId}&name=${encodeURIComponent(item)}`;
+      let query;
       if (isUrl) {
-        query += `&url=${encodeURIComponent(item)}`;
+        // LINK CARD: Short title + full URL in url param
+        const title = item.replace(/^https?:\/\/(www\.)?/, '').split('/')[0] || 'Link';
+        query = `key=${config.key}&token=${config.token}&idList=${listId}&name=${encodeURIComponent(title)}&url=${encodeURIComponent(item)}`;
+        console.log(`  🔗 "${title}" → ${item}`);
         linkCount++;
       } else {
+        // TEXT CARD: Use item as-is
+        query = `key=${config.key}&token=${config.token}&idList=${listId}&name=${encodeURIComponent(item)}`;
+        console.log(`  📝 "${item.substring(0, 40)}..."`);
         textCount++;
       }
 
       await axios.post(`https://api.trello.com/1/cards?${query}`);
-      console.log(`  ${isUrl ? '🔗' : '📝'} ${i + 1}/${items.length}: "${item.substring(0, 40)}${item.length > 40 ? '...' : ''}"`);
-
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
