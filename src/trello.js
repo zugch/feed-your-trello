@@ -55,7 +55,7 @@ async function feedTrello() {
       if (isUrl) {
         // LINK CARD: Short title + full URL in url param
         const title = item.replace(/^https?:\/\/(www\.)?/, '').split('/')[0] || 'Link';
-        query = `key=${config.key}&token=${config.token}&idList=${listId}&name=${encodeURIComponent(title)}&url=${encodeURIComponent(item)}`;
+        query = `key=${config.key}&token=${config.token}&idList=${listId}&name=${encodeURIComponent(title)}&desc=${encodeURIComponent(item)}&urlSource=${encodeURIComponent(item)}`;
         console.log(`  🔗 "${title}" → ${item}`);
         linkCount++;
       } else {
