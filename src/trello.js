@@ -46,6 +46,7 @@ async function feedTrello() {
     console.log(`📝 Feeding ${items.length} items from data/items.txt`);
 
     // 6. Create cards with proper titles + link detection
+    let linkCount = 0, textCount = 0;
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
       const isUrl = item.match(/^https?:\/\//i);
