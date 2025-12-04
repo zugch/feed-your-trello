@@ -46,18 +46,32 @@ async function feedTrello() {
     console.log(`📝 Feeding ${items.length} items from data/items.txt`);
 
     // 6. Create card for each item (one-way feed)
+    let linkCount = 0, textCount = 0;
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      await axios.post(
-        `https://api.trello.com/1/cards?name=${encodeURIComponent(item)}&idList=${listId}&key=${config.key}&token=${config.token}`
-      );
-      console.log(`  ✅ Fed card ${i + 1}: "${item.substring(0, 50)}..."`);
-      
-      // Rate limit: 100ms delay
+      const isUrl = item.startsWith('http://') || item.startsWith('https://');
+
+      const params = new URLSearchParams({
+        key: config.key,
+        token: config.token,
+        idList: listId,
+        name: encodeURIComponent(item)
+      });
+
+      if (isUrl) {
+        params.append('url', item);
+        linkCount++;
+      } else {
+        textCount++;
+      }
+
+      await axios.post(`https://api.trello.com/1/cards?${params}`);
+      console.log(`  ${isUrl ? '🔗' : '📝'} ${i + 1}: "${item.substring(0, 50)}..."`);
+
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
-    console.log(`🎉 Feed complete! ${today} list has ${items.length} cards`);
+    console.log(`🎉 Feed complete! ${linkCount} links + ${textCount} text cards`);
 
   } catch (error) {
     console.error('❌ Feed failed:', error.response?.data || error.message);
