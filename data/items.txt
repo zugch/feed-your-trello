@@ -1,5 +1,5 @@
 Review Q4 sales report
-https://docs.google.com/spreadsheets/d/abc123
+http://docs.google.com/spreadsheets/d/abc123
 Team meeting notes
 Fix login bug #456
 https://jira.company.com/browse/DEV-789

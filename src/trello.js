@@ -49,24 +49,19 @@ async function feedTrello() {
     let linkCount = 0, textCount = 0;
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      const isUrl = item.startsWith('http://') || item.startsWith('https://');
+      const isUrl = item.match(/^https?:\/\//i);
 
-      const params = new URLSearchParams({
-        key: config.key,
-        token: config.token,
-        idList: listId,
-        name: encodeURIComponent(item)
-      });
-
+      // Manual query string - NO URLSearchParams
+      let query = `key=${config.key}&token=${config.token}&idList=${listId}&name=${encodeURIComponent(item)}`;
       if (isUrl) {
-        params.append('url', item);
+        query += `&url=${encodeURIComponent(item)}`;
         linkCount++;
       } else {
         textCount++;
       }
 
-      await axios.post(`https://api.trello.com/1/cards?${params}`);
-      console.log(`  ${isUrl ? '🔗' : '📝'} ${i + 1}: "${item.substring(0, 50)}..."`);
+      await axios.post(`https://api.trello.com/1/cards?${query}`);
+      console.log(`  ${isUrl ? '🔗' : '📝'} ${i + 1}/${items.length}: "${item.substring(0, 40)}${item.length > 40 ? '...' : ''}"`);
 
       await new Promise(resolve => setTimeout(resolve, 100));
     }
