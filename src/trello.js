@@ -35,20 +35,15 @@ async function feedTrello() {
       console.log(`✅ Created list "${today}": ${listId}`);
     }
 
-    // 5. Read items.txt from repo
-    const filePath = path.join(__dirname, '..', 'data', 'items.txt');
-    const content = fs.readFileSync(filePath, 'utf8');
-    const items = content
-      .split('\n')
-      .map(item => item.trim())
-      .filter(item => item.length > 0);
-
-    console.log(`📝 Feeding ${items.length} items from data/items.txt`);
+    // 5. Read items.json from repo
+    const filePath = path.join(__dirname, '..', 'data', 'items.json');
+    const items = require(filePath); // Direct JSON array load;
+    console.log(`📝 Feeding ${items.length} items from data/items.json`);
 
     // 6. Create cards with proper titles + link detection
     let linkCount = 0, textCount = 0;
     for (let i = 0; i < items.length; i++) {
-      const item = items[i];
+      const item = items[i].name; // Access .name property
       const isUrl = item.match(/^https?:\/\//i);
 
       let query;
