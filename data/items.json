@@ -1,5 +1,31 @@
 [
     {
-        "name": "https://www.apfelkiste.ch/kisten-win.html"
+        "firstday": "2026-06-01",
+        "lastday": "2026-06-07",
+        "skip": false,
+        "entries": [
+            {
+                "name": "https://www.apfelkiste.ch/kisten-win.html"
+            },
+            {
+                "name": "https://www.example.com"
+            },
+            {
+                "name": "Poinz (Schätzfragen)"
+            }
+        ]
+    },
+    {
+        "firstday": "2026-06-08",
+        "lastday": "2026-06-14",
+        "skip": true,
+        "entries": [
+            {
+                "name": "https://andere-seite.ch"
+            },
+            {
+                "name": "Neues Gewinnspiel"
+            }
+        ]
     }
 ]

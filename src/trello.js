@@ -1,5 +1,4 @@
 const axios = require('axios');
-const fs = require('fs');
 const path = require('path');
 
 const config = {
@@ -8,12 +7,26 @@ const config = {
   boardId: process.env.BOARD_ID
 };
 
+// Helper: prüft ob heute in Zeitspanne liegt
+function isTodayInRange(firstday, lastday) {
+  const today = new Date();
+  const start = new Date(firstday);
+  const end = new Date(lastday);
+
+  // Zeit auf 00:00 setzen für sauberen Vergleich
+  today.setHours(0, 0, 0, 0);
+  start.setHours(0, 0, 0, 0);
+  end.setHours(0, 0, 0, 0);
+
+  return today >= start && today <= end;
+}
+
 async function feedTrello() {
   try {
     // 1. Generate today's date: DD.MM.YYYY
     const now = new Date();
-    const today = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()}`;
-    console.log(`📅 Feeding Trello list for: ${today}`);
+    const todayString = `${String(now.getDate()).padStart(2, '0')}.${String(now.getMonth() + 1).padStart(2, '0')}.${now.getFullYear()}`;
+    console.log(`📅 Feeding Trello list for: ${todayString}`);
 
     // 2. Get existing lists
     const listsResponse = await axios.get(
@@ -21,26 +34,39 @@ async function feedTrello() {
     );
 
     // 3. Check if today's list exists
-    const existingList = listsResponse.data.find(list => list.name === today);
+    const existingList = listsResponse.data.find(list => list.name === todayString);
     let listId;
+
     if (existingList) {
-      console.log(`✅ List "${today}" exists: ${existingList.id}`);
+      console.log(`✅ List "${todayString}" exists: ${existingList.id}`);
       listId = existingList.id;
     } else {
       // 4. Create new list
       const newListResponse = await axios.post(
-        `https://api.trello.com/1/lists?name=${encodeURIComponent(today)}&idBoard=${config.boardId}&key=${config.key}&token=${config.token}`
+        `https://api.trello.com/1/lists?name=${encodeURIComponent(todayString)}&idBoard=${config.boardId}&key=${config.key}&token=${config.token}`
       );
       listId = newListResponse.data.id;
-      console.log(`✅ Created list "${today}": ${listId}`);
+      console.log(`✅ Created list "${todayString}": ${listId}`);
     }
 
-    // 5. Read items.json from repo
+    // 5. Read JSON
     const filePath = path.join(__dirname, '..', 'data', 'items.json');
-    const items = require(filePath); // Direct JSON array load;
-    console.log(`📝 Feeding ${items.length} items from data/items.json`);
+    const timespans = require(filePath);
 
-    // 6. Create cards with proper titles + link detection
+    // 6. Finde passende Zeitspanne
+    const activeSpan = timespans.find(span =>
+      !span.skip && isTodayInRange(span.firstday, span.lastday)
+    );
+
+    if (!activeSpan) {
+      console.log('⚠️ No active timespan found for today (or skipped)');
+      return;
+    }
+
+    const items = activeSpan.entries;
+    console.log(`📝 Using ${items.length} entries from active timespan`);
+
+    // 7. Create cards with proper titles + link detection
     let linkCount = 0, textCount = 0;
     for (let i = 0; i < items.length; i++) {
       const item = items[i].name; // Access .name property
