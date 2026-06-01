@@ -2,7 +2,7 @@
     {
         "firstday": "2026-06-01",
         "lastday": "2026-06-07",
-        "skip": false,
+        "skip": true,
         "entries": [
             {
                 "name": "https://www.apfelkiste.ch/kisten-win.html"
@@ -18,7 +18,7 @@
     {
         "firstday": "2026-06-08",
         "lastday": "2026-06-14",
-        "skip": true,
+        "skip": false,
         "entries": [
             {
                 "name": "https://andere-seite.ch"
