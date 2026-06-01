@@ -1,5 +1,25 @@
 [
     {
-        "name": "https://www.apfelkiste.ch/kisten-win.html"
+        "firstday": "2026-06-01",
+        "lastday": "2026-06-21",
+        "skip": false,
+        "entries": [
+            {
+                "name": "https://www.apfelkiste.ch/kisten-win.html"
+            }
+        ]
+    },
+    {
+        "firstday": "2020-01-01",
+        "lastday": "2099-12-31",
+        "skip": true,
+        "entries": [
+            {
+                "name": "https://www.example.com"
+            },
+            {
+                "name": "Neues Gewinnspiel"
+            }
+        ]
     }
 ]
