@@ -10,6 +10,16 @@
         ]
     },
     {
+        "firstday": "2026-01-01",
+        "lastday": "2099-12-31",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Migrolino App -> Win (Würfelspiel)"
+            }
+        ]
+    },
+    {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
         "skip": true,
