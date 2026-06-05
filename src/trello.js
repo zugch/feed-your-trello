@@ -54,16 +54,16 @@ async function feedTrello() {
     const timespans = require(filePath);
 
     // 6. Finde passende Zeitspanne
-    const activeSpan = timespans.find(span =>
+    const activeSpans = timespans.filter(span =>
       !span.skip && isTodayInRange(span.firstday, span.lastday)
     );
 
-    if (!activeSpan) {
+    if (!activeSpans.length === 0) {
       console.log('⚠️ No active timespan found for today (or skipped)');
       return;
     }
 
-    const items = activeSpan.entries;
+    const items = activeSpans.flatMap(span => span.entries);
     console.log(`📝 Using ${items.length} entries from active timespan`);
 
     // 7. Create cards with proper titles + link detection
