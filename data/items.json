@@ -20,6 +20,16 @@
         ]
     },
     {
+        "firstday": "2026-06-10",
+        "lastday": "2026-06-20",
+        "skip": false,
+        "entries": [
+            {
+                "name": "https://www.ikea.com/ch/de/campaigns/midsommar-bei-ikea-puba259d9e0"
+            }
+        ]
+    },
+    {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
         "skip": true,
