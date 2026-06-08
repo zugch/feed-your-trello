@@ -58,7 +58,7 @@ async function feedTrello() {
       !span.skip && isTodayInRange(span.firstday, span.lastday)
     );
 
-    if (!activeSpans.length === 0) {
+    if (activeSpans.length === 0) {
       console.log('⚠️ No active timespan found for today (or skipped)');
       return;
     }
