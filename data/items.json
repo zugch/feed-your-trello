@@ -5,7 +5,9 @@
         "skip": false,
         "entries": [
             {
-                "name": "https://www.apfelkiste.ch/kisten-win.html"
+                "name": "https://www.apfelkiste.ch/kisten-win.html",
+                "dueOffsetDays": 0,
+                "dueTime": "23:00"
             }
         ]
     },
@@ -15,10 +17,12 @@
         "skip": false,
         "entries": [
             {
-                "name": "Migrolino App -> Win (Würfelspiel)"
+                "name": "Migrolino App -> Win (Würfelspiel)",
+                "dueOffsetDays": 1
             },
             {
-                "name": "Scoop -> Daily Game"
+                "name": "Scoop -> Daily Game",
+                "dueTime": "22:50"
             }
         ]
     },
