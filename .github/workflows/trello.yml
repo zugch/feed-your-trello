@@ -25,6 +25,7 @@ jobs:
 
     - name: Run Trello List Creator
       env:
+        TZ: Europe/Zurich
         TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
         TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
         BOARD_ID: ${{ secrets.BOARD_ID }}

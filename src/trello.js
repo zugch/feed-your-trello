@@ -21,6 +21,35 @@ function isTodayInRange(firstday, lastday) {
   return today >= start && today <= end;
 }
 
+function buildDueValue(entry) {
+  const hasDueOffsetDays = entry.dueOffsetDays !== undefined;
+  const hasDueTime = entry.dueTime !== undefined;
+
+  if (!hasDueOffsetDays && !hasDueTime) {
+    return null;
+  }
+
+  const dueOffsetDays = hasDueOffsetDays ? Number(entry.dueOffsetDays) : 0;
+  const dueTime = hasDueTime ? String(entry.dueTime).trim() : '23:59';
+
+  const isValidOffset = Number.isInteger(dueOffsetDays) && dueOffsetDays >= 0;
+  const timeMatch = /^([01]\d|2[0-3]):([0-5]\d)$/.exec(dueTime);
+
+  if (!isValidOffset || !timeMatch) {
+    return null;
+  }
+
+  const hours = Number(timeMatch[1]);
+  const minutes = Number(timeMatch[2]);
+
+  const due = new Date();
+  due.setHours(0, 0, 0, 0);
+  due.setDate(due.getDate() + dueOffsetDays);
+  due.setHours(hours, minutes, 0, 0);
+
+  return due.toISOString();
+}
+
 async function feedTrello() {
   try {
     // 1. Generate today's date: DD.MM.YYYY
@@ -64,33 +93,81 @@ async function feedTrello() {
     }
 
     const items = activeSpans.flatMap(span => span.entries);
-    console.log(`📝 Using ${items.length} entries from active timespan`);
+    console.log(`📝 Using ${items.length} entries from active timespan(s)`);
 
     // 7. Create cards with proper titles + link detection
-    let linkCount = 0, textCount = 0;
+    let linkCount = 0;
+    let textCount = 0;
+    let dueCount = 0;
+    let skippedDueCount = 0;
+    
     for (let i = 0; i < items.length; i++) {
-      const item = items[i].name; // Access .name property
-      const isUrl = item.match(/^https?:\/\//i);
+      const entry = items[i];
+      const item = entry.name; // Access .name property
+      
+      if (typeof item !== 'string' || item.trim() === '') {
+        console.log(`  ⚠️ Skipping invalid entry at index ${i}: missing name`);
+        continue;
+      }
+      
+      const due = buildDueValue(entry);
+      const dueConfigured = entry.dueOffsetDays !== undefined || entry.dueTime !== undefined;
+      const isUrl = /^https?:\/\//i.test(item);
+      
+      const queryParts = [
+        `key=${config.key}`,
+        `token=${config.token}`,
+        `idList=${listId}`
+      ];
 
-      let query;
       if (isUrl) {
         // LINK CARD: Short title + full URL in url param
         const title = item.replace(/^https?:\/\/(www\.)?/, '').split('/')[0] || 'Link';
-        query = `key=${config.key}&token=${config.token}&idList=${listId}&name=${encodeURIComponent(title)}&urlSource=${encodeURIComponent(item)}`;
-        console.log(`  🔗 "${title}" → ${item}`);
+        queryParts.push(`name=${encodeURIComponent(title)}`);
+        queryParts.push(`urlSource=${encodeURIComponent(item)}`);
+
+        if (due) {
+          queryParts.push(`due=${encodeURIComponent(due)}`);
+          console.log(`  🔗 "${title}" → ${item} | due ${due}`);
+          dueCount++;
+        } else {
+          if (dueConfigured) {
+            console.log(`  ⚠️ Ignoring invalid due config for "${title}"`);
+            skippedDueCount++;
+          }
+          console.log(`  🔗 "${title}" → ${item}`);
+        }
+
         linkCount++;
       } else {
         // TEXT CARD: Use item as-is
-        query = `key=${config.key}&token=${config.token}&idList=${listId}&name=${encodeURIComponent(item)}`;
-        console.log(`  📝 "${item.substring(0, 40)}..."`);
+        queryParts.push(`name=${encodeURIComponent(item)}`);
+
+        if (due) {
+          queryParts.push(`due=${encodeURIComponent(due)}`);
+          console.log(`  📝 "${item.substring(0, 40)}..." | due ${due}`);
+          dueCount++;
+        } else {
+          if (dueConfigured) {
+            console.log(`  ⚠️ Ignoring invalid due config for "${item.substring(0, 40)}..."`);
+            skippedDueCount++;
+          }
+          console.log(`  📝 "${item.substring(0, 40)}..."`);
+        }
+
         textCount++;
       }
 
+      const query = queryParts.join('&');
       await axios.post(`https://api.trello.com/1/cards?${query}`);
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
-    console.log(`🎉 Feed complete! ${linkCount} links + ${textCount} text cards`);
+    console.log(`🎉 Feed complete! ${linkCount} links + ${textCount} text cards + ${dueCount} due dates`);
+
+    if (skippedDueCount > 0) {
+      console.log(`⚠️ Ignored invalid due config on ${skippedDueCount} entr${skippedDueCount === 1 ? 'y' : 'ies'}`);
+    }
 
   } catch (error) {
     console.error('❌ Feed failed:', error.response?.data || error.message);

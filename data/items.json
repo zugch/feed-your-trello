@@ -5,7 +5,8 @@
         "skip": false,
         "entries": [
             {
-                "name": "https://www.apfelkiste.ch/kisten-win.html"
+                "name": "https://www.apfelkiste.ch/kisten-win.html",
+                "dueOffsetDays": 0
             }
         ]
     },
@@ -15,10 +16,12 @@
         "skip": false,
         "entries": [
             {
-                "name": "Migrolino App -> Win (Würfelspiel)"
+                "name": "Migrolino App -> Win (Würfelspiel)",
+                "dueOffsetDays": 0
             },
             {
-                "name": "Scoop -> Daily Game"
+                "name": "Scoop -> Daily Game",
+                "dueOffsetDays": 0
             }
         ]
     },
@@ -28,7 +31,8 @@
         "skip": false,
         "entries": [
             {
-                "name": "https://www.ikea.com/ch/de/campaigns/midsommar-bei-ikea-puba259d9e0"
+                "name": "https://www.ikea.com/ch/de/campaigns/midsommar-bei-ikea-puba259d9e0",
+                "dueOffsetDays": 0
             }
         ]
     },
@@ -38,10 +42,13 @@
         "skip": true,
         "entries": [
             {
-                "name": "https://www.example.com"
+                "name": "https://www.example.com",
+                "dueOffsetDays": 3,
+                "dueTime": "12:00"
             },
             {
-                "name": "Neues Gewinnspiel"
+                "name": "Neues Gewinnspiel",
+                "dueTime": "22:30"
             }
         ]
     }
