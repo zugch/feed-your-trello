@@ -17,6 +17,7 @@ The script is designed for scheduled automation through GitHub Actions, but it c
 
 URL entries are turned into link cards, while normal text entries are created as standard Trello cards.
 If multiple active timespans overlap on the same day, all of their entries are used.
+If an entry includes a valid due configuration, a Trello due date is added to the card.
 
 ## Repository structure
 
@@ -46,6 +47,8 @@ The script expects these environment variables:
 For local runs, place them in a `.env` file or export them in your shell.
 For GitHub Actions, store them as repository secrets.
 
+If you use due dates, set `TZ=Europe/Zurich` in the workflow or local environment so times like `23:59` are interpreted in Swiss local time before being converted to ISO 8601 for Trello.
+
 ## data/items.json
 
 `data/items.json` is an array of timespan objects.
@@ -58,7 +61,10 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
     "lastday": "2026-06-21",
     "skip": false,
     "entries": [
-      { "name": "https://www.apfelkiste.ch/kisten-win.html" }
+      { "name": "https://www.apfelkiste.ch/kisten-win.html" },
+      { "name": "Migrolino App -> Win (Würfelspiel)", "dueOffsetDays": 2, "dueTime": "18:30" },
+      { "name": "Scoop -> Daily Game", "dueOffsetDays": 1 },
+      { "name": "Evening reminder", "dueTime": "20:00" }
     ]
   }
 ]
@@ -71,12 +77,19 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
 - `skip`: If `true`, the span is ignored.
 - `entries`: Array of cards to create.
 - `entries[].name`: Card title or URL.
+- `entries[].dueOffsetDays`: Optional number of days added to the current run date before the due date is calculated.
+- `entries[].dueTime`: Optional due time in `HH:mm` format.
 
 ### Behavior notes
 
 - Multiple matching active timespans are supported and their entries are combined.
 - URL values are shortened for the card title and stored as Trello link cards.
 - Duplicate names are not de-duplicated automatically.
+- If neither `dueOffsetDays` nor `dueTime` is set, no due date is added.
+- If one or both due fields are set, missing values fall back to `0` for `dueOffsetDays` and `23:59` for `dueTime`.
+- `dueOffsetDays` must be a non-negative integer.
+- `dueTime` must be in `HH:mm` 24-hour format.
+- If either due field is invalid, both are ignored and the card is created without a due date.
 
 ## Local testing
 
@@ -89,12 +102,16 @@ npm install && npm start
 ```
 ✅ Check Trello board for new date list
 
+If you use due dates locally, run with `TZ=Europe/Zurich npm start`.
+
 The script will create or reuse today’s Trello list and populate it with matching cards.
 
 ## GitHub Actions
 
 The repository includes a workflow that runs daily on a schedule and can also be started manually from the Actions tab.
 It checks out the repository, installs dependencies, and runs `node src/trello.js` with the required secrets.
+
+If you use due dates, add `TZ: Europe/Zurich` to the workflow environment.
 
 ## License
 
