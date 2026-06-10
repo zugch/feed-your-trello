@@ -15,8 +15,7 @@ The script is designed for scheduled automation through GitHub Actions, but it c
 4. All timespans where `skip` is `false` and today falls between `firstday` and `lastday` are collected.
 5. The entries from all matching timespans are merged and posted to Trello.
 
-URL entries are turned into link cards, while normal text entries are created as standard Trello cards.
-If multiple active timespans overlap on the same day, all of their entries are used.
+If an entry contains a `link`, the card is created with that link attached.
 If an entry includes a valid due configuration, a Trello due date is added to the card.
 
 ## Repository structure
@@ -61,7 +60,7 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
     "lastday": "2026-06-21",
     "skip": false,
     "entries": [
-      { "name": "https://www.apfelkiste.ch/kisten-win.html" },
+      { "name": "Apfelkiste Wettbewerb", "link": "https://www.apfelkiste.ch/kisten-win.html" },
       { "name": "Migrolino App -> Win (Würfelspiel)", "dueOffsetDays": 2, "dueTime": "18:30" },
       { "name": "Scoop -> Daily Game", "dueOffsetDays": 1 },
       { "name": "Evening reminder", "dueTime": "20:00" }
@@ -76,14 +75,16 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
 - `lastday`: End date in `YYYY-MM-DD` format.
 - `skip`: If `true`, the span is ignored.
 - `entries`: Array of cards to create.
-- `entries[].name`: Card title or URL.
+- `entries[].name`: Required card title.
+- `entries[].link`: Optional link attached to the card.
 - `entries[].dueOffsetDays`: Optional number of days added to the current run date before the due date is calculated.
 - `entries[].dueTime`: Optional due time in `HH:mm` format.
 
 ### Behavior notes
 
 - Multiple matching active timespans are supported and their entries are combined.
-- URL values are shortened for the card title and stored as Trello link cards.
+- `name` is used only as the card title.
+- If `link` is set, it is passed to Trello as the card link.
 - Duplicate names are not de-duplicated automatically.
 - If neither `dueOffsetDays` nor `dueTime` is set, no due date is added.
 - If one or both due fields are set, missing values fall back to `0` for `dueOffsetDays` and `23:59` for `dueTime`.
@@ -103,6 +104,7 @@ npm install && npm start
 ✅ Check Trello board for new date list
 
 If you use due dates locally, run with `TZ=Europe/Zurich npm start`.
+If your setup uses native Node env-file loading, you can also start with `node --env-file-if-exists=.env src/trello.js`.
 
 The script will create or reuse today’s Trello list and populate it with matching cards.
 
