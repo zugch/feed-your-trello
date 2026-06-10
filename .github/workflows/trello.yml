@@ -8,6 +8,7 @@ on:
 jobs:
   create-list:
     runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'production' || 'development' }}
     timeout-minutes: 5
 
     steps:
