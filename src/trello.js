@@ -96,23 +96,23 @@ async function feedTrello() {
     console.log(`📝 Using ${items.length} entries from active timespan(s)`);
 
     // 7. Create cards with proper titles + link detection
-    let linkCount = 0;
-    let textCount = 0;
+    let cardCount = 0;
     let dueCount = 0;
     let skippedDueCount = 0;
     
     for (let i = 0; i < items.length; i++) {
       const entry = items[i];
-      const item = entry.name; // Access .name property
+      const entryName = entry.name; // Access .name property
+      const entryLink = entry.link; // Access .link property
       
-      if (typeof item !== 'string' || item.trim() === '') {
+      if (typeof entryName !== 'string' || entryName.trim() === '') {
         console.log(`  ⚠️ Skipping invalid entry at index ${i}: missing name`);
         continue;
       }
       
       const due = buildDueValue(entry);
       const dueConfigured = entry.dueOffsetDays !== undefined || entry.dueTime !== undefined;
-      const isUrl = /^https?:\/\//i.test(item);
+      const isUrl = (typeof entryLink === 'string' && entryLink.trim() !== '');
       
       const queryParts = [
         `key=${config.key}`,
@@ -120,50 +120,32 @@ async function feedTrello() {
         `idList=${listId}`
       ];
 
+      queryParts.push(`name=${encodeURIComponent(entryName)}`);
+
       if (isUrl) {
-        // LINK CARD: Short title + full URL in url param
-        const title = item.replace(/^https?:\/\/(www\.)?/, '').split('/')[0] || 'Link';
-        queryParts.push(`name=${encodeURIComponent(title)}`);
-        queryParts.push(`urlSource=${encodeURIComponent(item)}`);
-
-        if (due) {
-          queryParts.push(`due=${encodeURIComponent(due)}`);
-          console.log(`  🔗 "${title}" → ${item} | due ${due}`);
-          dueCount++;
-        } else {
-          if (dueConfigured) {
-            console.log(`  ⚠️ Ignoring invalid due config for "${title}"`);
-            skippedDueCount++;
-          }
-          console.log(`  🔗 "${title}" → ${item}`);
-        }
-
-        linkCount++;
-      } else {
-        // TEXT CARD: Use item as-is
-        queryParts.push(`name=${encodeURIComponent(item)}`);
-
-        if (due) {
-          queryParts.push(`due=${encodeURIComponent(due)}`);
-          console.log(`  📝 "${item.substring(0, 40)}..." | due ${due}`);
-          dueCount++;
-        } else {
-          if (dueConfigured) {
-            console.log(`  ⚠️ Ignoring invalid due config for "${item.substring(0, 40)}..."`);
-            skippedDueCount++;
-          }
-          console.log(`  📝 "${item.substring(0, 40)}..."`);
-        }
-
-        textCount++;
+        queryParts.push(`urlSource=${encodeURIComponent(entryLink)}`);
       }
+
+      if (due) {
+        queryParts.push(`due=${encodeURIComponent(due)}`);
+        console.log(`  📝 "${entryName.substring(0, 40)}..." | due ${due}`);
+        dueCount++;
+      } else {
+        if (dueConfigured) {
+          console.log(`  ⚠️ Ignoring invalid due config for "${entryName.substring(0, 40)}..."`);
+          skippedDueCount++;
+        }
+        console.log(`  📝 "${entryName.substring(0, 40)}..."`);
+      }
+
+      cardCount++;
 
       const query = queryParts.join('&');
       await axios.post(`https://api.trello.com/1/cards?${query}`);
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
-    console.log(`🎉 Feed complete! ${linkCount} links + ${textCount} text cards + ${dueCount} due dates`);
+    console.log(`🎉 Feed complete! ${cardCount} cards + ${dueCount} due dates`);
 
     if (skippedDueCount > 0) {
       console.log(`⚠️ Ignored invalid due config on ${skippedDueCount} entr${skippedDueCount === 1 ? 'y' : 'ies'}`);
