@@ -39,6 +39,17 @@
         ]
     },
     {
+        "firstday": "2026-06-11",
+        "lastday": "2026-06-22",
+        "skip": false,
+        "entries": [
+            {
+                "name":"Coop App -> Penalty schiessen",
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
         "skip": true,
