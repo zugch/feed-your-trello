@@ -16,6 +16,7 @@ The script is designed for scheduled automation through GitHub Actions, but it c
 5. The entries from all matching timespans are merged and posted to Trello.
 
 If an entry contains a `link`, the card is created with that link attached.
+If an entry includes labels, they are added to the card after creation.
 If an entry includes a valid due configuration, a Trello due date is added to the card.
 
 ## Repository structure
@@ -63,7 +64,8 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
       { "name": "Apfelkiste Wettbewerb", "link": "https://www.apfelkiste.ch/kisten-win.html" },
       { "name": "Migrolino App -> Win (Würfelspiel)", "dueOffsetDays": 2, "dueTime": "18:30" },
       { "name": "Scoop -> Daily Game", "dueOffsetDays": 1 },
-      { "name": "Evening reminder", "dueTime": "20:00" }
+      { "name": "Evening reminder", "dueTime": "20:00" },
+      { "name": "Example", "link": "https://www.example.com", "labels": [ { "name": "win", "color": "red" }, { "name": "daily", "color": "blue" } ], "dueOffsetDays": 3, "dueTime": "12:00" }
     ]
   }
 ]
@@ -79,6 +81,7 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
 - `entries[].link`: Optional link attached to the card.
 - `entries[].dueOffsetDays`: Optional number of days added to the current run date before the due date is calculated.
 - `entries[].dueTime`: Optional due time in `HH:mm` format.
+- `entries[].labels`: Optional array of labels, each with `name` and `color`.
 
 ### Behavior notes
 
@@ -88,6 +91,7 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
 - Duplicate names are not de-duplicated automatically.
 - If neither `dueOffsetDays` nor `dueTime` is set, no due date is added.
 - If one or both due fields are set, missing values fall back to `0` for `dueOffsetDays` and `23:59` for `dueTime`.
+- `labels` are optional and can contain multiple entries.
 - `dueOffsetDays` must be a non-negative integer.
 - `dueTime` must be in `HH:mm` 24-hour format.
 - If either due field is invalid, both are ignored and the card is created without a due date.
