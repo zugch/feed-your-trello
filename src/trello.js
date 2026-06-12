@@ -141,8 +141,24 @@ async function feedTrello() {
       cardCount++;
 
       const query = queryParts.join('&');
-      await axios.post(`https://api.trello.com/1/cards?${query}`);
+      const { data: card } = await axios.post(`https://api.trello.com/1/cards?${query}`);
       await new Promise(resolve => setTimeout(resolve, 100));
+
+      if (Array.isArray(entry.labels) && entry.labels.length > 0) {
+        for (const label of entry.labels) {
+          const color = typeof label?.color === 'string' ? label.color.trim() : '';
+          const labelName = typeof label?.name === 'string' ? label.name.trim() : '';
+          if (!color) continue;
+          await axios.post(`https://api.trello.com/1/cards/${card.id}/labels`, null, {
+            params: {
+              key: config.key,
+              token: config.token,
+              color,
+              ...(labelName ? { name: labelName } : {})
+            }
+          });
+        }
+      }
     }
 
     console.log(`🎉 Feed complete! ${cardCount} cards + ${dueCount} due dates`);

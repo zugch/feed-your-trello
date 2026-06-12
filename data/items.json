@@ -81,6 +81,7 @@
             {
                 "name": "Example",
                 "link": "https://www.example.com",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "daily", "color": "blue" } ],
                 "dueOffsetDays": 3,
                 "dueTime": "12:00"
             },
