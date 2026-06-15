@@ -1,6 +1,18 @@
 [
     {
         "firstday": "2026-06-01",
+        "lastday": "2026-06-30",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Twint Spin & win: Schatzsuche",
+                "labels": [ { "name": "win", "color": "red" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
+        "firstday": "2026-06-01",
         "lastday": "2026-06-21",
         "skip": false,
         "entries": [
