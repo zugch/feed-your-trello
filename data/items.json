@@ -1,11 +1,25 @@
 [
     {
         "firstday": "2026-06-01",
+        "lastday": "2026-06-30",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Twint Spin & win: Schatzsuche",
+                "labels": [ { "name": "win", "color": "red" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
+        "firstday": "2026-06-01",
         "lastday": "2026-06-21",
         "skip": false,
         "entries": [
             {
-                "name": "https://www.apfelkiste.ch/kisten-win.html",
+                "name": "Apfelkiste Kisten-Win",
+                "link": "https://www.apfelkiste.ch/kisten-win.html",
+                "labels": [ { "name": "win", "color": "red" } ],
                 "dueOffsetDays": 0
             }
         ]
@@ -31,7 +45,43 @@
         "skip": false,
         "entries": [
             {
-                "name": "https://www.ikea.com/ch/de/campaigns/midsommar-bei-ikea-puba259d9e0",
+                "name":"IKEA Midsommar",
+                "link": "https://www.ikea.com/ch/de/campaigns/midsommar-bei-ikea-puba259d9e0",
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
+        "firstday": "2026-06-11",
+        "lastday": "2026-06-22",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Coop App -> Penalty schiessen",
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
+        "firstday": "2026-06-08",
+        "lastday": "2026-06-28",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Swisslos - Win for life",
+                "link": "https://win.swisslos.ch",
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
+        "firstday": "2026-09-21",
+        "lastday": "2026-10-11",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Swisslos - Win for life",
+                "link": "https://win.swisslos.ch",
                 "dueOffsetDays": 0
             }
         ]
@@ -42,7 +92,9 @@
         "skip": true,
         "entries": [
             {
-                "name": "https://www.example.com",
+                "name": "Example",
+                "link": "https://www.example.com",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "daily", "color": "blue" } ],
                 "dueOffsetDays": 3,
                 "dueTime": "12:00"
             },
