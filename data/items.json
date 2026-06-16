@@ -6,7 +6,7 @@
         "entries": [
             {
                 "name": "Twint Spin & win: Schatzsuche",
-                "labels": [ { "name": "win", "color": "red" } ],
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
         ]
@@ -19,7 +19,7 @@
             {
                 "name": "Apfelkiste Kisten-Win",
                 "link": "https://www.apfelkiste.ch/kisten-win.html",
-                "labels": [ { "name": "win", "color": "red" } ],
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 0
             }
         ]
@@ -31,10 +31,12 @@
         "entries": [
             {
                 "name": "Migrolino App -> Win (Würfelspiel)",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             },
             {
                 "name": "Scoop -> Daily Game",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
         ]
@@ -47,6 +49,7 @@
             {
                 "name":"IKEA Midsommar",
                 "link": "https://www.ikea.com/ch/de/campaigns/midsommar-bei-ikea-puba259d9e0",
+                "labels": [ { "name": "discount", "color": "orange" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 0
             }
         ]
@@ -58,6 +61,7 @@
         "entries": [
             {
                 "name": "Coop App -> Penalty schiessen",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
         ]
@@ -70,6 +74,7 @@
             {
                 "name": "Swisslos - Win for life",
                 "link": "https://win.swisslos.ch",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 0
             }
         ]
@@ -82,6 +87,7 @@
             {
                 "name": "Swisslos - Win for life",
                 "link": "https://win.swisslos.ch",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 0
             }
         ]
