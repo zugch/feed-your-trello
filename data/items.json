@@ -1,6 +1,18 @@
 [
     {
         "firstday": "2026-06-01",
+        "lastday": "2026-12-31",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Tour de Suisse Verlosungen",
+                "link": "https://tds.livxp.com/experience",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ]
+            }
+        ]
+    },
+    {
+        "firstday": "2026-06-01",
         "lastday": "2026-06-30",
         "skip": false,
         "entries": [
