@@ -79,6 +79,18 @@
         ]
     },
     {
+        "firstday": "2026-06-18",
+        "lastday": "2026-07-01",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Supercard App -> Baby Moments",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-06-08",
         "lastday": "2026-06-28",
         "skip": false,
