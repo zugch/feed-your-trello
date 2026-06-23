@@ -12,19 +12,6 @@
         ]
     },
     {
-        "firstday": "2026-06-01",
-        "lastday": "2026-06-21",
-        "skip": false,
-        "entries": [
-            {
-                "name": "Apfelkiste Kisten-Win",
-                "link": "https://www.apfelkiste.ch/kisten-win.html",
-                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
-                "dueOffsetDays": 0
-            }
-        ]
-    },
-    {
         "firstday": "2026-01-01",
         "lastday": "2099-12-31",
         "skip": false,
@@ -42,25 +29,12 @@
         ]
     },
     {
-        "firstday": "2026-06-10",
-        "lastday": "2026-06-20",
+        "firstday": "2026-06-18",
+        "lastday": "2026-07-01",
         "skip": false,
         "entries": [
             {
-                "name":"IKEA Midsommar",
-                "link": "https://www.ikea.com/ch/de/campaigns/midsommar-bei-ikea-puba259d9e0",
-                "labels": [ { "name": "discount", "color": "orange" }, { "name": "browser", "color": "green" } ],
-                "dueOffsetDays": 0
-            }
-        ]
-    },
-    {
-        "firstday": "2026-06-11",
-        "lastday": "2026-06-22",
-        "skip": false,
-        "entries": [
-            {
-                "name": "Coop App -> Penalty schiessen",
+                "name": "Supercard App -> Baby Moments",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
@@ -88,6 +62,19 @@
                 "name": "Swisslos - Win for life",
                 "link": "https://win.swisslos.ch",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
+        "firstday": "2026-05-25",
+        "lastday": "2026-07-19",
+        "skip": false,
+        "entries": [
+            {
+                "name": "K-Kiosk - Event'n'Rail",
+                "link": "https://eventnrail.okpunktstrich.ch/de/",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
         ]
