@@ -87,7 +87,7 @@
             {
                 "name": "Example",
                 "link": "https://www.example.com",
-                "labels": [ { "name": "win", "color": "red" }, { "name": "daily", "color": "blue" } ],
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" }, { "name": "app", "color": "yellow" }, { "name": "discount", "color": "orange" } ],
                 "dueOffsetDays": 3,
                 "dueTime": "12:00"
             },
