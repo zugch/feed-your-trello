@@ -12,19 +12,6 @@
         ]
     },
     {
-        "firstday": "2026-06-01",
-        "lastday": "2026-06-21",
-        "skip": false,
-        "entries": [
-            {
-                "name": "Apfelkiste Kisten-Win",
-                "link": "https://www.apfelkiste.ch/kisten-win.html",
-                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
-                "dueOffsetDays": 0
-            }
-        ]
-    },
-    {
         "firstday": "2026-01-01",
         "lastday": "2099-12-31",
         "skip": false,
@@ -36,31 +23,6 @@
             },
             {
                 "name": "Scoop -> Daily Game",
-                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
-                "dueOffsetDays": 0
-            }
-        ]
-    },
-    {
-        "firstday": "2026-06-10",
-        "lastday": "2026-06-20",
-        "skip": false,
-        "entries": [
-            {
-                "name":"IKEA Midsommar",
-                "link": "https://www.ikea.com/ch/de/campaigns/midsommar-bei-ikea-puba259d9e0",
-                "labels": [ { "name": "discount", "color": "orange" }, { "name": "browser", "color": "green" } ],
-                "dueOffsetDays": 0
-            }
-        ]
-    },
-    {
-        "firstday": "2026-06-11",
-        "lastday": "2026-06-22",
-        "skip": false,
-        "entries": [
-            {
-                "name": "Coop App -> Penalty schiessen",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
@@ -105,6 +67,19 @@
         ]
     },
     {
+        "firstday": "2026-05-25",
+        "lastday": "2026-07-19",
+        "skip": false,
+        "entries": [
+            {
+                "name": "K-Kiosk - Event'n'Rail",
+                "link": "https://eventnrail.okpunktstrich.ch/de/",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
         "skip": true,
@@ -119,18 +94,6 @@
             {
                 "name": "Neues Gewinnspiel",
                 "dueTime": "22:30"
-            }
-        ]
-    },
-    {
-        "firstday": "2026-06-01",
-        "lastday": "2026-12-31",
-        "skip": true,
-        "entries": [
-            {
-                "name": "Tour de Suisse Verlosungen",
-                "link": "https://tds.livxp.com/experience",
-                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ]
             }
         ]
     }
