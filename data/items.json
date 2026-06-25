@@ -41,6 +41,18 @@
         ]
     },
     {
+        "firstday": "2026-06-25",
+        "lastday": "2026-07-08",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Coop App -> Play & Win",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-06-08",
         "lastday": "2026-06-28",
         "skip": false,
