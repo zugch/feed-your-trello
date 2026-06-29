@@ -53,19 +53,6 @@
         ]
     },
     {
-        "firstday": "2026-06-08",
-        "lastday": "2026-06-28",
-        "skip": false,
-        "entries": [
-            {
-                "name": "Swisslos - Win for life",
-                "link": "https://win.swisslos.ch",
-                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
-                "dueOffsetDays": 0
-            }
-        ]
-    },
-    {
         "firstday": "2026-09-21",
         "lastday": "2026-10-11",
         "skip": false,
