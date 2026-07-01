@@ -106,6 +106,20 @@
     {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
+        "skip": false,
+        "cron": "* * * * 3",
+        "entries": [
+            {
+                "name": "Migros-Magazin Rätsel",
+                "link": "https://magazine.migros.ch/de.html",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
+                "dueOffsetDays": 6
+            }
+        ]
+    },
+    {
+        "firstday": "2020-01-01",
+        "lastday": "2099-12-31",
         "skip": true,
         "entries": [
             {
