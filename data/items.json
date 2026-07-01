@@ -120,6 +120,21 @@
     {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
+        "skip": false,
+        "cron": "* * * * 4",
+        "entries": [
+            {
+                "name": "Coopzeitung Rätsel",
+                "link": "https://www.coopzeitung.ch/de/wettbewerbe.html",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
+                "dueOffsetDays": 6,
+                "dueTime": "16:00"
+            }
+        ]
+    },
+    {
+        "firstday": "2020-01-01",
+        "lastday": "2099-12-31",
         "skip": true,
         "entries": [
             {
