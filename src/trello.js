@@ -1,5 +1,7 @@
 const axios = require('axios');
 const path = require('path');
+const { parse } = require('@datasert/cronjs-parser');
+const cronjsMatcher = require('@datasert/cronjs-matcher');
 
 const config = {
   key: process.env.TRELLO_KEY,
@@ -7,18 +9,43 @@ const config = {
   boardId: process.env.BOARD_ID
 };
 
-// Helper: prüft ob heute in Zeitspanne liegt
-function isTodayInRange(firstday, lastday) {
+function getTodayLunchTime() {
   const today = new Date();
+  today.setHours(12, 0, 0, 0);
+  return today;
+}
+
+// Helper: prüft ob heute in Zeitspanne liegt
+function isTodayInRange(firstday, lastday, todayProbe) {
   const start = new Date(firstday);
   const end = new Date(lastday);
 
   // Zeit auf 00:00 setzen für sauberen Vergleich
-  today.setHours(0, 0, 0, 0);
   start.setHours(0, 0, 0, 0);
   end.setHours(0, 0, 0, 0);
 
-  return today >= start && today <= end;
+  return todayProbe >= start && todayProbe <= end;
+}
+
+// Helper: prüft optionalen Cron-Ausdruck für heute
+function doesCronMatchToday(cronExpression, todayStart) {
+  if (cronExpression === undefined || cronExpression === null || String(cronExpression).trim() === '') {
+    return true;
+  }
+
+  const expr = String(cronExpression).trim();
+
+  try {
+    parse(expr);
+
+    return cronjsMatcher.isTimeMatches(
+      expr,
+      todayStart.toISOString()
+    );
+  } catch (error) {
+    console.log(`  ⚠️ Invalid cron "${expr}" - ${error.message}`);
+    return false;
+  }
 }
 
 function buildDueValue(entry) {
@@ -83,8 +110,11 @@ async function feedTrello() {
     const timespans = require(filePath);
 
     // 6. Finde passende Zeitspanne
+    const todayProbe = getTodayLunchTime();
     const activeSpans = timespans.filter(span =>
-      !span.skip && isTodayInRange(span.firstday, span.lastday)
+      !span.skip &&
+      isTodayInRange(span.firstday, span.lastday, todayProbe) &&
+      doesCronMatchToday(span.cron, todayProbe)
     );
 
     if (activeSpans.length === 0) {

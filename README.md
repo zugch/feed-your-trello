@@ -12,7 +12,7 @@ The script is designed for scheduled automation through GitHub Actions, but it c
 1. The script checks whether today’s Trello list already exists.
 2. If it does not exist, a new list is created on the configured board.
 3. `data/items.json` is loaded.
-4. All timespans where `skip` is `false` and today falls between `firstday` and `lastday` are collected.
+4. All timespans where `skip` is `false`, today falls between `firstday` and `lastday`, and an optional `cron` expression matches today are collected.
 5. The entries from all matching timespans are merged and posted to Trello.
 
 If an entry contains a `link`, the card is created with that link attached.
@@ -52,7 +52,7 @@ If you use due dates, set `TZ=Europe/Zurich` in the workflow or local environmen
 ## data/items.json
 
 `data/items.json` is an array of timespan objects.
-Each object contains a date range, a `skip` flag, and an `entries` array.
+Each object contains a date range, a `skip` flag, an optional `cron` field, and an `entries` array.
 
 ```json
 [
@@ -60,6 +60,7 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
     "firstday": "2026-06-01",
     "lastday": "2026-06-21",
     "skip": false,
+    "cron": "* * * * 1-5",
     "entries": [
       { "name": "Apfelkiste Wettbewerb", "link": "https://www.apfelkiste.ch/kisten-win.html" },
       { "name": "Migrolino App -> Win (Würfelspiel)", "dueOffsetDays": 2, "dueTime": "18:30" },
@@ -76,6 +77,7 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
 - `firstday`: Start date in `YYYY-MM-DD` format.
 - `lastday`: End date in `YYYY-MM-DD` format.
 - `skip`: If `true`, the span is ignored.
+- `cron`: Optional 5-field cron expression used to further restrict when the timespan is active.
 - `entries`: Array of cards to create.
 - `entries[].name`: Required card title.
 - `entries[].link`: Optional link attached to the card.
@@ -95,16 +97,38 @@ Each object contains a date range, a `skip` flag, and an `entries` array.
 - `dueOffsetDays` must be a non-negative integer.
 - `dueTime` must be in `HH:mm` 24-hour format.
 - If either due field is invalid, both are ignored and the card is created without a due date.
+- If `cron` is not set, the timespan is active for every day within the date range.
+- If `cron` is set, the timespan is active only when the current day matches the cron expression.
+- The cron expression is evaluated in addition to `firstday`, `lastday`, and `skip`.
+- Cron expressions use the standard 5-field format: `minute hour day-of-month month day-of-week`.
+- For this project, the date match is evaluated using a probe time at `12:00` local time so day-of-week handling is stable around day boundaries.
+
+### Cron examples
+
+Examples for the optional `cron` field:
+
+- `* * * * *` — every day.
+- `* * * * 1-5` — Monday to Friday.
+- `* * * * 3` — Wednesday.
+- `* * * * 0,6` — Sunday and Saturday.
+- `* * * 1 *` — every day in January.
+
+The first two fields (`minute` and `hour`) are accepted as part of the cron format, but for timespan activation the relevant part is whether the expression matches the current calendar day.
+Depending on the cron implementation, day-of-week usually supports `0-7`, where `0` and often `7` mean Sunday. To avoid ambiguity, prefer `0` for Sunday.
+Some cron features such as `L`, `W`, `#`, and `?` are supported by the underlying cronjs packages.
 
 ## Local testing
 
 ```bash
 cp .env.example .env
 ```
+
 Edit .env with your real values
+
 ```bash
 npm install && npm start
 ```
+
 ✅ Check Trello board for new date list
 
 If you use due dates locally, run with `TZ=Europe/Zurich npm start`.
