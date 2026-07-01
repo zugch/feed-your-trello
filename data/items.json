@@ -1,5 +1,17 @@
 [
     {
+        "firstday": "2026-07-01",
+        "lastday": "2026-08-31",
+        "skip": false,
+        "entries": [
+            {
+                "name": "ENGIE Vianeo - Summer Recharge",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-05-06",
         "lastday": "2026-08-04",
         "skip": false,
