@@ -1,8 +1,21 @@
 [
     {
+        "firstday": "2026-05-06",
+        "lastday": "2026-08-04",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Shell Frische-Kampagne",
+                "link": "https://shell-dach.campaign.playable.com/2026-kampagne-frische-de",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-06-01",
         "lastday": "2026-06-30",
-        "skip": false,
+        "skip": true,
         "entries": [
             {
                 "name": "Twint Spin & win: Schatzsuche",
