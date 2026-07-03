@@ -1,5 +1,18 @@
 [
     {
+        "firstday": "2026-07-02",
+        "lastday": "2026-08-14",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Migros Sommer-Gewinnspiel",
+                "link": "https://www.migros.ch/de/content/sommer-gewinnspiel-migros-online-26",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-07-01",
         "lastday": "2026-08-31",
         "skip": false,
