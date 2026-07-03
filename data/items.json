@@ -148,6 +148,19 @@
     {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
+        "skip": false,
+        "cron": "* * * * 4",
+        "entries": [
+            {
+                "name": "Wochenblatt Kreuzworträtsel",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "offline", "color": "purple" } ],
+                "dueOffsetDays": 4
+            }
+        ]
+    },
+    {
+        "firstday": "2020-01-01",
+        "lastday": "2099-12-31",
         "skip": true,
         "entries": [
             {
