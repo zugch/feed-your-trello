@@ -149,7 +149,7 @@
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
         "skip": false,
-        "cron": "* * * * 4",
+        "cron": "* * * * 5",
         "entries": [
             {
                 "name": "Wochenblatt Kreuzworträtsel",
