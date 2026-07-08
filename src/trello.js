@@ -24,7 +24,7 @@ function isTodayInRange(firstday, lastday, todayProbe) {
 
   // Zeit auf 00:00 setzen für sauberen Vergleich
   start.setHours(0, 0, 0, 0);
-  end.setHours(0, 0, 0, 0);
+  end.setHours(23, 59, 0, 0);
   console.log(`start=${start}, end=${end}`);
 
   console.log(`t>=s:${todayProbe >= start}, t<=e=${todayProbe <= end}`);
