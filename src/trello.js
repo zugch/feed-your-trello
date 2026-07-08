@@ -20,9 +20,9 @@ function isTodayInRange(firstday, lastday, todayProbe) {
   const start = new Date(firstday);
   const end = new Date(lastday);
 
-  // Zeit auf 00:00 setzen für sauberen Vergleich
+  // Zeit auf 00:00 bzw. 23:59 setzen für sauberen Vergleich
   start.setHours(0, 0, 0, 0);
-  end.setHours(0, 0, 0, 0);
+  end.setHours(23, 59, 0, 0);
 
   return todayProbe >= start && todayProbe <= end;
 }
