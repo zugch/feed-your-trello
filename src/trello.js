@@ -17,17 +17,12 @@ function getTodayLunchTime() {
 
 // Helper: prüft ob heute in Zeitspanne liegt
 function isTodayInRange(firstday, lastday, todayProbe) {
-  console.log(`f=${firstday}, l=${lastday}, t=${todayProbe}`);
   const start = new Date(firstday);
   const end = new Date(lastday);
-  console.log(`start=${start}, end=${end}`);
 
-  // Zeit auf 00:00 setzen für sauberen Vergleich
+  // Zeit auf 00:00 bzw. 23:59 setzen für sauberen Vergleich
   start.setHours(0, 0, 0, 0);
   end.setHours(23, 59, 0, 0);
-  console.log(`start=${start}, end=${end}`);
-
-  console.log(`t>=s:${todayProbe >= start}, t<=e=${todayProbe <= end}`);
 
   return todayProbe >= start && todayProbe <= end;
 }
