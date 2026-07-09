@@ -162,7 +162,7 @@
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
         "skip": false,
-        "cron": "* * 9 * *",
+        "cron": "* * 10 * *",
         "entries": [
             {
                 "name": "HEV Kreuzworträtsel",
