@@ -166,6 +166,7 @@
         "entries": [
             {
                 "name": "HEV Kreuzworträtsel",
+                "link": "https://www.hev-schweiz.ch/wohnen/produkte-neuheiten/kreuzwortraetsel",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 25
             }
