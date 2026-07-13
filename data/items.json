@@ -153,6 +153,7 @@
         "entries": [
             {
                 "name": "Wochenblatt Kreuzworträtsel",
+                "link": "https://www.wochenblatt.ch/wob/e-paper",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "offline", "color": "purple" } ],
                 "dueOffsetDays": 4
             }
