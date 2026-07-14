@@ -55,7 +55,7 @@
         "skip": false,
         "entries": [
             {
-                "name": "Migrolino App -> Win (Würfelspiel)",
+                "name": "Migrolino App -> Win (Würfelspiel/Glücksrad)",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             },
