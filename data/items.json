@@ -67,12 +67,12 @@
         ]
     },
     {
-        "firstday": "2026-06-18",
-        "lastday": "2026-07-01",
+        "firstday": "2026-07-30",
+        "lastday": "2026-08-12",
         "skip": false,
         "entries": [
             {
-                "name": "Supercard App -> Baby Moments",
+                "name": "Supercard App -> Pronto Festival",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
