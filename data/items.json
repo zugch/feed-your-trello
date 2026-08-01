@@ -139,6 +139,24 @@
             {
                 "name": "Coopzeitung Rätsel",
                 "link": "https://www.coopzeitung.ch/de/wettbewerbe.html",
+                "items": [
+                    {
+                      "name": "Kreuzworträtsel",
+                      "link": "https://www.coopzeitung.ch/de/wettbewerbe/kreuzwortraetsel-aus-der-coopzeitung.html"
+                    },
+                    {
+                      "name": "Sudoku",
+                      "link": "https://www.coopzeitung.ch/de/wettbewerbe/sudoku-aus-der-coopzeitung.html"
+                    },
+                    {
+                      "name": "Binoxxo",
+                      "link": "https://www.coopzeitung.ch/de/wettbewerbe/binoxxo-aus-der-coopzeitung.html"
+                    },
+                    {
+                      "name": "Jamadu",
+                      "link": "https://www.coopzeitung.ch/de/wettbewerbe/ihre-loesung-zum-jamadu-raetsel.html"
+                    }
+                ],
                 "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 6,
                 "dueTime": "16:00"
