@@ -176,6 +176,7 @@ async function feedTrello() {
       const { data: card } = await axios.post(`https://api.trello.com/1/cards?${query}`);
       await new Promise(resolve => setTimeout(resolve, 100));
 
+      // 8. Add labels
       if (Array.isArray(entry.labels) && entry.labels.length > 0) {
         for (const label of entry.labels) {
           const color = typeof label?.color === 'string' ? label.color.trim() : '';
@@ -189,6 +190,44 @@ async function feedTrello() {
               ...(labelName ? { name: labelName } : {})
             }
           });
+        }
+      }
+
+      // 9. Add checklist
+      const checklistItems = entry.items || [];
+
+      if (checklistItems.length > 0) {
+        try {
+          // 1. Erstellen des Checklisten-Containers auf der zuvor generierten Trello-Karte
+          const checklistUrl = `https://api.trello.com/1/cards/${card.id}/checklists`;
+          const checklistResponse = await axios.post(checklistUrl, null, {
+            params: {
+              name: 'Tasks',
+              key: config.key,
+              token: config.token
+            }
+          });
+          
+          const checklistId = checklistResponse.data.id;
+          
+          // 2. Iteration über die Sub-Items und Hinzufügen der Einträge zur Checkliste
+          for (const item of checklistItems) {
+            if (item.name) {
+              // Falls ein optionaler Link existiert, hängen wir ihn an den Namen an
+              const itemName = item.link ? `${item.name} ${item.link}` : item.name;
+              
+              const checkItemUrl = `https://api.trello.com/1/checklists/${checklistId}/checkItems`;
+              await axios.post(checkItemUrl, null, {
+                params: {
+                  name: itemName,
+                  key: config.key,
+                  token: config.token
+                }
+              });
+            }
+          }
+        } catch (error) {
+          console.error(`Axios-Fehler bei der Checklisten-Verarbeitung für Karte ${card.id}:`, error.message || error);
         }
       }
     }
