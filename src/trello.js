@@ -134,6 +134,7 @@ async function feedTrello() {
       const entry = items[i];
       const entryName = entry.name; // Access .name property
       const entryLink = entry.link; // Access .link property
+      const entryDesc = entry.desc || '' // Access .desc property
       
       if (typeof entryName !== 'string' || entryName.trim() === '') {
         console.log(`  ⚠️ Skipping invalid entry at index ${i}: missing name`);
@@ -151,6 +152,7 @@ async function feedTrello() {
       ];
 
       queryParts.push(`name=${encodeURIComponent(entryName)}`);
+      queryParts.push(`desc=${encodeURIComponent(entryDesc)}`);
 
       if (isUrl) {
         queryParts.push(`urlSource=${encodeURIComponent(entryLink)}`);
