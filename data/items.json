@@ -125,6 +125,20 @@
             {
                 "name": "Migros-Magazin Rätsel",
                 "link": "https://magazine.migros.ch/de.html",
+                "items": [
+                    {
+                      "name": "Kreuzworträtsel"
+                    },
+                    {
+                      "name": "Sudoku"
+                    },
+                    {
+                      "name": "Paroli"
+                    },
+                    {
+                      "name": "Quiz"
+                    }
+                ],
                 "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 6
             }
