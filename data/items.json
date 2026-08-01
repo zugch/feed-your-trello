@@ -183,6 +183,15 @@
                 "name": "Example",
                 "desc": "# Project Summary\n\nThis is a **bolded** introduction line.\n\n* Task Item 1\n* Task Item 2\n\nReview the [documentation](https://trello.com) for updates.",
                 "link": "https://www.example.com",
+                "items": [
+                    {
+                    "name": "Task with link",
+                    "link": "https://www.trello.com"
+                    },
+                    {
+                    "name": "Task without link"
+                    }
+                ],
                 "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" }, { "name": "app", "color": "yellow" }, { "name": "discount", "color": "orange" } ],
                 "dueOffsetDays": 3,
                 "dueTime": "12:00"

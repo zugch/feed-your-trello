@@ -19,6 +19,7 @@ If an entry contains a `link`, the card is created with that link attached.
 If an entry contains a `desc`, the card is created with that description (supports Markdown).
 If an entry includes labels, they are added to the card after creation.
 If an entry includes a valid due configuration, a Trello due date is added to the card.
+If an entry includes an array of `items`, a Trello checklist named "Tasks" is generated inside the card.
 
 ## Repository structure
 
@@ -67,7 +68,17 @@ Each object contains a date range, a `skip` flag, an optional `cron` field, and 
       { "name": "Migrolino App -> Win (Würfelspiel)", "dueOffsetDays": 2, "dueTime": "18:30" },
       { "name": "Scoop -> Daily Game", "dueOffsetDays": 1, "desc": "Check the dashboard for instructions." },
       { "name": "Evening reminder", "dueTime": "20:00" },
-      { "name": "Example", "link": "https://www.example.com", "labels": [ { "name": "win", "color": "red" }, { "name": "daily", "color": "blue" } ], "dueOffsetDays": 3, "dueTime": "12:00", "desc": "Important info:\n- Step 1\n- Step 2" }
+      { 
+        "name": "Rätsel aus der Coopzeitung", 
+        "link": "https://coopzeitung.ch",
+        "desc": "Wöchentliche Rätselrunde.\n\n**Wichtig:** Bitte Einsendeschluss beachten!",
+        "labels": [ { "name": "win", "color": "red" } ],
+        "items": [
+          { "name": "Kreuzworträtsel", "link": "https://coopzeitung.ch/kwr" },
+          { "name": "Sudoku" },
+          { "name": "Binoxxo" }
+        ]
+      }
     ]
   }
 ]
@@ -86,6 +97,9 @@ Each object contains a date range, a `skip` flag, an optional `cron` field, and 
 - `entries[].dueOffsetDays`: Optional number of days added to the current run date before the due date is calculated.
 - `entries[].dueTime`: Optional due time in `HH:mm` format.
 - `entries[].labels`: Optional array of labels, each with `name` and `color`.
+- `entries[].items`: Optional array of checklist items to add to the card.
+- `entries[].items[].name`: Required name for the specific checklist item.
+- `entries[].items[].link`: Optional link appended directly to the checklist item name.
 
 ### Behavior notes
 
