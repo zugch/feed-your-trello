@@ -192,6 +192,20 @@
         ]
     },
     {
+        "firstday": "2026-07-01",
+        "lastday": "2026-12-31",
+        "skip": false,
+        "cron": "* * * * 1",
+        "entries": [
+            {
+                "name": "Brack App -> Umfrage",
+                "desc": "Vom 01.07. – 31.12.2026 werden in der Brack App, wöchentlich Gutscheine im Wert von je CHF 1000.– verlost. Die Gewinner:innen werden via E-Mail informiert.",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 6
+            }
+        ]
+    },
+    {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
         "skip": false,
