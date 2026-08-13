@@ -67,12 +67,12 @@
         ]
     },
     {
-        "firstday": "2026-07-30",
-        "lastday": "2026-08-12",
+        "firstday": "2026-08-13",
+        "lastday": "2026-08-26",
         "skip": false,
         "entries": [
             {
-                "name": "Supercard App -> Pronto Festival",
+                "name": "Supercard App -> Coop City: Catch the bag",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
