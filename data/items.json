@@ -104,13 +104,13 @@
         ]
     },
     {
-        "firstday": "2026-05-25",
-        "lastday": "2026-07-19",
+        "firstday": "2026-08-17",
+        "lastday": "2026-09-27",
         "skip": false,
         "entries": [
             {
-                "name": "K-Kiosk - Event'n'Rail",
-                "link": "https://eventnrail.okpunktstrich.ch/de/",
+                "name": "K-Kiosk - GA-Night",
+                "link": "https://ganight.okpunktstrich.ch/de/win-a-ga-night",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
