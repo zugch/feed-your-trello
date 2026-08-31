@@ -231,6 +231,29 @@
     {
         "firstday": "2020-01-01",
         "lastday": "2099-12-31",
+        "skip": false,
+        "cron": "* * 1 * *",
+        "entries": [
+            {
+                "name": "Volg-Magazin Rätsel",
+                "desc": "Kreuzworträtsel und Wettbewerb.",
+                "link": "https://www.volg.ch/dorfplatz/kundenmagazin-oeise-lade/",
+                "items": [
+                    {
+                      "name": "Kreuzworträtsel"
+                    },
+                    {
+                      "name": "Wettbewerb"
+                    }
+                ],
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" }, { "name": "offline", "color": "purple" } ],
+                "dueOffsetDays": 25
+            }
+        ]
+    },
+    {
+        "firstday": "2020-01-01",
+        "lastday": "2099-12-31",
         "skip": true,
         "entries": [
             {
