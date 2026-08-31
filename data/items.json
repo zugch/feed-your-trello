@@ -225,15 +225,7 @@
                 ],
                 "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 25
-            }
-        ]
-    },
-    {
-        "firstday": "2020-01-01",
-        "lastday": "2099-12-31",
-        "skip": false,
-        "cron": "* * 1 * *",
-        "entries": [
+            },
             {
                 "name": "Volg-Magazin Rätsel",
                 "desc": "Kreuzworträtsel und Wettbewerb.",
