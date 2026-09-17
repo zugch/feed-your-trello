@@ -67,12 +67,12 @@
         ]
     },
     {
-        "firstday": "2026-08-13",
-        "lastday": "2026-08-26",
+        "firstday": "2026-09-17",
+        "lastday": "2026-09-30",
         "skip": false,
         "entries": [
             {
-                "name": "Supercard App -> Coop City: Catch the bag",
+                "name": "Supercard App -> Coop Pronto: Spin",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
             }
