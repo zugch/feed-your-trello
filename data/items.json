@@ -1,5 +1,19 @@
 [
     {
+        "firstday": "2026-09-27",
+        "lastday": "2026-10-18",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Apfelkiste Kisten-Win",
+                "desc": "Schüttle die Apfelkiste – bis am 18. Oktober wartet täglich ein neuer Gewinn auf dich. Jede Teilnahme bringt dir zusätzlich ein Los für die Verlosung am Ende der Aktion im Gesamtwert von über CHF 5'000.",
+                "link": "https://www.apfelkiste.ch/kisten-win.html",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-07-02",
         "lastday": "2026-08-14",
         "skip": false,
