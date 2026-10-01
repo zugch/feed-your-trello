@@ -52,6 +52,12 @@
                 "name": "Scoop -> Daily Game",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
                 "dueOffsetDays": 0
+            },
+            {
+                "name": "Limited (Kiosk) -> Scratch & Win",
+                "desc": "Dauer unbekannt, aber sicher bis 25.10.2026",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
             }
         ]
     },
