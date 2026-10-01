@@ -62,6 +62,19 @@
         ]
     },
     {
+        "firstday": "2026-09-28",
+        "lastday": "2026-11-08",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Limited (Kiosk) -> Glücksrad",
+                "desc": "Täglich einen 50.- Gutschein für avec/k-kiosk gewinnen.",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-09-17",
         "lastday": "2026-09-30",
         "skip": false,
