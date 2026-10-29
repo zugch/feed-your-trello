@@ -81,6 +81,19 @@
         ]
     },
     {
+        "firstday": "2026-10-29",
+        "lastday": "2026-11-10",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Supercard App -> Supercard Universe",
+                "desc": "13 Games, 13 Gewinne\n\nEntdecken Sie in 13 galaktischen Games das Supercard Universum und tauchen Sie ein in die unterschiedlichsten Welten unserer Partner. Versuchen Sie Ihr Glück und sichern Sie sich Belohnungen wie Rabatte, zusätzliche Superpunkte und Gratisprodukte der Supercard Partner.",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-06-25",
         "lastday": "2026-07-08",
         "skip": false,
