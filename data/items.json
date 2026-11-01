@@ -76,6 +76,7 @@
             {
                 "name": "AVIA -> Gratis Tanken 2026",
                 "desc": "Tägliche Sofortpreise und Tank-Gutschein als Hauptpreis.",
+                "link": "https://win.avia.ch/",
                 "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
                 "dueOffsetDays": 0
             }
