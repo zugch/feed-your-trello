@@ -69,6 +69,19 @@
         ]
     },
     {
+        "firstday": "2026-10-12",
+        "lastday": "2026-12-03",
+        "skip": false,
+        "entries": [
+            {
+                "name": "AVIA -> Gratis Tanken 2026",
+                "desc": "Tägliche Sofortpreise und Tank-Gutschein als Hauptpreis.",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "browser", "color": "green" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-09-17",
         "lastday": "2026-09-30",
         "skip": false,
