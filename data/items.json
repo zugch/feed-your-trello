@@ -69,6 +69,19 @@
         ]
     },
     {
+        "firstday": "2026-11-09",
+        "lastday": "2026-11-18",
+        "skip": false,
+        "entries": [
+            {
+                "name": "Limited (Kiosk) -> Scratch & Win!",
+                "desc": "Rubbel dein Los frei und sieh, ob du gewonnen hast.",
+                "labels": [ { "name": "win", "color": "red" }, { "name": "app", "color": "yellow" } ],
+                "dueOffsetDays": 0
+            }
+        ]
+    },
+    {
         "firstday": "2026-10-12",
         "lastday": "2026-12-03",
         "skip": false,
